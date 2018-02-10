@@ -4,28 +4,32 @@ Classe contenant les règles du jeu de la vie
 
 import numpy as np
 
-class Rules():
-    length=4
-    width=4
-    state=np.random.randint(2, size=(length,width))
+class Rules:
 
-    def setLength(x):
-        self.length=x
+    def __init__(self,l=4,w=4):
+        self.length=l # longeur grille
+        self.width=w # largeur grille
+        self._state=np.random.randint(2, size=(l,w)) # random binary matrix l*w
 
-    def setWidth(y):
-        self.width=y
+    def _get_state(self):
+        return self._state
 
-    def setState(state):
-        self.state=state
+    def _set_state(self,s):
+        self._state=s
 
-    def empty():
-        return np.zeros((length,width))
+    state=property(_get_state, _set_state)
 
-    def getAll():
+    def allDead(self):
+        return np.zeros((self.length,self.width)) # matrix l*w of zeros
+
+    def getAll(self):
         allStates=[]
-        # ...
+        # TODO :
+        # Fonction retournant une liste de tous les états possibles
+        # pour une grille l*w
         return allStates
 
-    def next(state):
-        # ...
+    def next(self,state):
+        # TODO :
+        # Fonction retournant l'état successeur de state
         return nextState
