@@ -1,2 +1,3 @@
 # GameOfLife
-Game of life 3 - 4
+
+Implémentation du jeu de la vie 3-4 
