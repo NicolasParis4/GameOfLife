@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Classe contenant les règles du jeu de la vie
 """
