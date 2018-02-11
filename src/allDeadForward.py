@@ -18,12 +18,15 @@ def rRunGame(rules,state,visited):
         visited.append(state)
         return rRunGame(rules,rules.next(state),visited)
 
+print("[Forward]")
 height=input("Hauteur de la grille : ")
 width=input("Largeur de la grille : ")
+print("*****")
 r=rl.Rules(int(height),int(width)) # création d'un objet Rules
 result=[] # liste des états menant à tout mort
 for state in r.getAll():
     visited=[] # liste des états visités
     if rRunGame(r,state,visited)==True:
         result.append(state)
-print(result)
+print("Proportion d'états menant à tout mort :")
+print(len(result),"/",2**(int(height)*int(width)))

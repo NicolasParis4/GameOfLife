@@ -6,8 +6,10 @@ mènent à ces états ...
 
 import rules as rl
 
+print("[Backward]")
 height=input("Hauteur de la grille : ")
 width=input("Largeur de la grille : ")
+print("*****")
 r=rl.Rules(int(height),int(width)) # création d'un objet Rules
 isEnd=False
 result=[r.allDead()] # liste des états menant à tout mort initialisée avec tout mort
@@ -19,4 +21,5 @@ while not isEnd:
         elif any((r.next(state) == x).all() for x in result):
             result.append(state)
             isEnd=False
-print(result)
+print("Proportion d'états menant à tout mort :")
+print(len(result),"/",2**(int(height)*int(width)))
