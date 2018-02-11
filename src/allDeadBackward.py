@@ -16,7 +16,7 @@ while not isEnd:
     for state in r.getAll():
         if any((state == x).all() for x in result):
             continue
-        elif r.next(state) in result:
+        elif any((r.next(state) == x).all() for x in result):
             result.append(state)
             isEnd=False
 print(result)
