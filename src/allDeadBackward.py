@@ -6,13 +6,15 @@ mènent à ces états ...
 
 import rules as rl
 
-r=rl.Rules() # création d'un objet Rules
+height=input("Hauteur de la grille : ")
+width=input("Largeur de la grille : ")
+r=rl.Rules(int(height),int(width)) # création d'un objet Rules
 isEnd=False
 result=[r.allDead()] # liste des états menant à tout mort initialisée avec tout mort
 while not isEnd:
     isEnd=True
     for state in r.getAll():
-        if state in result:
+        if any((state == x).all() for x in result):
             continue
         elif r.next(state) in result:
             result.append(state)
