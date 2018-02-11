@@ -6,7 +6,6 @@ mènent à ces états ...
 """
 
 import rules as rl
-
 import time
 
 print("[Backward]")

@@ -5,8 +5,8 @@ Obtenir les états menant à tout mort et executant le jeu de la vie sur chaque
 """
 
 import rules as rl
-
 import time
+
 """
 Fonction récursive permettant d'exécuter le jeu de la vie jusqu'à
 tout mort (True) ou un cycle (False)
@@ -27,7 +27,6 @@ print("*****")
 start_time = time.time()
 r=rl.Rules(int(height),int(width)) # création d'un objet Rules
 result=[] # liste des états menant à tout mort
-print len(r.getAll())
 for state in r.getAll():
     visited=[] # liste des états visités
     if rRunGame(r,state,visited)==True:

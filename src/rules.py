@@ -67,11 +67,18 @@ class Rules:
                 valsOfNeighbors = []
                 for neighbor in self.neighbors(h,w):
                     valsOfNeighbors.append(state[neighbor])
-
-                # Cell is alive if 3 or 4 neighbors
-                if valsOfNeighbors.count(1) == 3 or valsOfNeighbors.count(1) == 4:
-                    nextState[h][w] = 1
-                # Cell is dead otherwise
-                else:
+                # Live square dies if it has > 3 or < 2 live neighbors
+                if state[h][w] == 1 and (valsOfNeighbors.count(1) > 3 or valsOfNeighbors.count(1) < 2):
                     nextState[h][w] = 0
+                # Empty square comes to life if it has three live neighbors
+                elif state[h][w] == 0 and valsOfNeighbors.count(1) == 3:
+                    nextState[h][w] = 1
+                elif state[h][w] != 1 and state[h][w] != 0:
+                    raise Exception('Grid can only contain 0 or 1')
+                # # Cell is alive if 3 or 4 neighbors
+                # if valsOfNeighbors.count(1) == 3 or valsOfNeighbors.count(1) == 4:
+                #     nextState[h][w] = 1
+                # # Cell is dead otherwise
+                # else:
+                #     nextState[h][w] = 0
         return nextState
