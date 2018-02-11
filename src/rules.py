@@ -41,19 +41,19 @@ class Rules:
             allStates.append(arr)
         return allStates
 
-    def neighbors(self,x,y):
+    def neighbors(self,h,w):
     	"""
     	Returns an array of tuples with all neighbors of the given cell
     	"""
     	return [
-    	    (x-1 if x-1 >= 0 else self.width-1, y-1 if y-1 >= 0 else self.height-1),
-    	    (x-1 if x-1 >= 0 else self.width-1, y),
-    	    (x-1 if x-1 >= 0 else self.width-1, y+1 if y+1 < self.height-1 else 0),
-    	    (x+1 if x+1 < self.width-1 else 0, y-1 if y-1 >= 0 else self.height-1),
-    	    (x+1 if x+1 < self.width-1 else 0, y),
-    	    (x+1 if x+1 < self.width-1 else 0, y+1 if y+1 < self.height-1 else 0),
-    	    (x, y-1 if y-1 >= 0 else self.height-1),
-    	    (x, y+1 if y+1 < self.height-1 else 0),
+    	    (h-1 if h-1 >= 0 else self.height-1, w-1 if w-1 >= 0 else self.width-1),
+    	    (h-1 if h-1 >= 0 else self.height-1, w),
+    	    (h-1 if h-1 >= 0 else self.height-1, w+1 if w+1 < self.width-1 else 0),
+    	    (h+1 if h+1 < self.height-1 else 0, w-1 if w-1 >= 0 else self.width-1),
+    	    (h+1 if h+1 < self.height-1 else 0, w),
+    	    (h+1 if h+1 < self.height-1 else 0, w+1 if w+1 < self.width-1 else 0),
+    	    (h, w-1 if w-1 >= 0 else self.width-1),
+    	    (h, w+1 if w+1 < self.width-1 else 0),
     	]
 
     def next(self,state):
@@ -65,7 +65,7 @@ class Rules:
             for w in range(len(state[h])):
                 # Get all the neighbors
                 valsOfNeighbors = []
-                for neighbor in self.neighbors(w,h):
+                for neighbor in self.neighbors(h,w):
                     valsOfNeighbors.append(state[neighbor])
 
                 # Cell is alive if 3 or 4 neighbors
