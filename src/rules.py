@@ -24,6 +24,9 @@ class Rules:
         """
         return np.zeros((self.height,self.width)) # matrix h*w of zeros
 
+    def isDead(self,state):
+        return np.array_equal(state,self.allDead())
+
     def getAll(self):
         """
         Fonction retournant une liste de tous les états possibles
