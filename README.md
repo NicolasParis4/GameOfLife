@@ -11,7 +11,7 @@ License: GNU GPL 3.0
 
 
 Description:  
-Implémentation du jeu de la vie  
+Implémentation du jeu de la vie selon les règles de Conway  
 
 
 Requires:  
