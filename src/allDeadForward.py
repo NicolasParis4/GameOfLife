@@ -12,7 +12,7 @@ Fonction récursive permettant d'exécuter le jeu de la vie jusqu'à
 tout mort (True) ou un cycle (False)
 """
 def rRunGame(rules,state,visited):
-    if rules.isDead(rules.next(state)): # condition à modif
+    if rules.isDead(rules.next(state)):
         return True
     elif any((rules.next(state) == x).all() for x in visited):
         return False
