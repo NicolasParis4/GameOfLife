@@ -49,12 +49,12 @@ class Rules:
     	return [
     	    (h-1 if h-1 >= 0 else self.height-1, w-1 if w-1 >= 0 else self.width-1),
     	    (h-1 if h-1 >= 0 else self.height-1, w),
-    	    (h-1 if h-1 >= 0 else self.height-1, w+1 if w+1 < self.width-1 else 0),
-    	    (h+1 if h+1 < self.height-1 else 0, w-1 if w-1 >= 0 else self.width-1),
-    	    (h+1 if h+1 < self.height-1 else 0, w),
-    	    (h+1 if h+1 < self.height-1 else 0, w+1 if w+1 < self.width-1 else 0),
+    	    (h-1 if h-1 >= 0 else self.height-1, w+1 if w+1 < self.width else 0),
+    	    (h+1 if h+1 < self.height else 0, w-1 if w-1 >= 0 else self.width-1),
+    	    (h+1 if h+1 < self.height else 0, w),
+    	    (h+1 if h+1 < self.height else 0, w+1 if w+1 < self.width else 0),
     	    (h, w-1 if w-1 >= 0 else self.width-1),
-    	    (h, w+1 if w+1 < self.width-1 else 0),
+    	    (h, w+1 if w+1 < self.width else 0),
     	]
 
     def next(self,state):
