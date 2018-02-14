@@ -59,7 +59,7 @@ class Rules:
 
     def next(self,state):
         """
-        Fonction retournant l'état successeur de state avec les règels 3-4
+        Fonction retournant l'état successeur de state avec les règles de Conway
         """
         nextState=state.copy()
         for h in range(len(state)):
