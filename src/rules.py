@@ -11,13 +11,7 @@ class Rules:
     def __init__(self,h=4,w=4):
         self.height=h # hauteur grille
         self.width=w # largeur grille
-        self._state=np.random.randint(2, size=(h,w)) # random binary matrix h*w
-
-    def _get_state(self):
-        return self._state
-    def _set_state(self,s):
-        self._state=s
-    state=property(_get_state, _set_state)
+  
 
     def allDead(self):
         """
