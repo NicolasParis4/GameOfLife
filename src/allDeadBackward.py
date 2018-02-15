@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+DEPRECATED
+"""
+"""
 Obtenir tous les états menant à tout mort en partant de l'état tout mort et
 en remontant aux états qui mènent à cet état, et en remontant aux états qui
 mènent à ces états ...

@@ -25,7 +25,8 @@ class Rules:
         """
         return np.zeros((self.height,self.width)) # matrix h*w of zeros
 
-    def isDead(self,state):
+    def isDead(self,s):
+        state = np.fromiter(s, np.int8).reshape(self.height,self.width)
         return np.array_equal(state,self.allDead())
 
     def getAll(self):
@@ -35,12 +36,8 @@ class Rules:
         """
         allStates=[]
         # Generate all the combinations as string tuples of length h*w
-        seq = itertools.product("01", repeat=self.height*self.width)
-        for s in seq:
-            # Convert to numpy array and reshape to h*w
-            arr = np.fromiter(s, np.int8).reshape(self.height,self.width)
-            allStates.append(arr)
-        return allStates
+        seq = itertools.product(range(2), repeat=self.height*self.width)
+        return seq
 
     def neighbors(self,h,w):
     	"""
@@ -57,11 +54,12 @@ class Rules:
     	    (h, w+1 if w+1 < self.width else 0),
     	]
 
-    def next(self,state):
+    def next(self,s):
         """
         Fonction retournant l'état successeur de state avec les règles de Conway
         """
-        nextState=state.copy()
+        state = np.fromiter(s, np.int8).reshape(self.height,self.width)
+        nextState=[]
         for h in range(len(state)):
             for w in range(len(state[h])):
                 # Get all the neighbors
@@ -69,17 +67,15 @@ class Rules:
                 for neighbor in self.neighbors(h,w):
                     valsOfNeighbors.append(state[neighbor])
                 # Live square dies if it has > 3 or < 2 live neighbors
-                if state[h][w] == 1 and (valsOfNeighbors.count(1) > 3 or valsOfNeighbors.count(1) < 2):
-                    nextState[h][w] = 0
+                if state[h][w] == 1:
+                    if (valsOfNeighbors.count(1) > 3 or valsOfNeighbors.count(1) < 2):
+                        nextState.append('0')
+                    else:
+                        nextState.append('1')
                 # Empty square comes to life if it has three live neighbors
-                elif state[h][w] == 0 and valsOfNeighbors.count(1) == 3:
-                    nextState[h][w] = 1
-                elif state[h][w] != 1 and state[h][w] != 0:
-                    raise Exception('Grid can only contain 0 or 1')
-                # # Cell is alive if 3 or 4 neighbors
-                # if valsOfNeighbors.count(1) == 3 or valsOfNeighbors.count(1) == 4:
-                #     nextState[h][w] = 1
-                # # Cell is dead otherwise
-                # else:
-                #     nextState[h][w] = 0
-        return nextState
+                else:
+                    if valsOfNeighbors.count(1) == 3:
+                        nextState.append('1')
+                    else:
+                        nextState.append('0')
+        return tuple(nextState)
